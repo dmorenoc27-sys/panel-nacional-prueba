@@ -84,14 +84,20 @@
     const ls = (lista || []).filter(u => u.pim > 0).map(u => ({ u, av: 100 * u.dev / u.pim })).sort((a, b) => b.av - a.av);
     let ult = null; try { ult = JSON.parse(localStorage.getItem('ultima_ue') || 'null'); } catch (e) { }
     const iu = ult ? ls.findIndex(x => x.u.cod === String(ult.cod)) : -1;
-    const fila = (x, i, yo) => `<a class="vt-rk${yo ? ' yo' : ''}" href="#/ue/${esc(x.u.cod)}"><span class="vt-n">${N(i + 1)}</span><span class="vt-nom" title="${esc(x.u.nombre)}">${esc(x.u.nombre)}</span><span class="vt-b ${sem(x.av)}"><i style="width:${Math.min(100, x.av).toFixed(1)}%"></i></span><b>${x.av.toFixed(1)} %</b></a>`;
-    const top = ls.slice(0, 5).map((x, i) => fila(x, i, i === iu)).join('');
-    const yo = iu >= 5 ? `<div class="vt-gap" aria-hidden="true">···</div>${fila(ls[iu], iu, true)}` : '';
-    const resto = Math.max(0, ls.length - 5 - (iu >= 5 ? 1 : 0));
-    t.innerHTML = `<div class="vt-tab"><p class="vt-tt"><b>Ranking de ejecución${ambito ? ' · ' + esc(ambito) : ''}</b> · ${N(ls.length)} entidades, por avance (devengado / PIM)</p>
-      <div class="vt-rks">${top}${yo}</div>
-      ${resto ? `<div class="vt-blur" aria-hidden="true">${'<i></i>'.repeat(Math.min(3, resto))}</div><p class="vt-mas"><span class="vt-lk">${candado}</span>${N(resto)} entidades más, con sus inversiones y alertas, para las entidades con Acierta.</p>` : ''}
-      ${cta('Acierta: quiero ver el ranking completo', 'Ver el ranking completo de tu región')}</div>`;
+    // 30/10 (David): el ranking va completo y abierto (cifras publicas del MEF); cada entidad abre su ficha publica y muestra cuantas
+    // inversiones conviene revisar. Lo que sigue con candado es cuales son, sus motivos y todo el detalle.
+    const fila = (x, i, yo, rv) => { const n = rv ? (typeof rv === 'number' ? rv : rv.n) : 0;
+      return `<a class="vt-rk${yo ? ' yo' : ''}" href="#/ue/${esc(x.u.cod)}"${yo ? ' id="vt-yo"' : ''}><span class="vt-n">${N(i + 1)}</span><span class="vt-nom" title="${esc(x.u.nombre)}">${esc(x.u.nombre)}</span><span class="vt-b ${sem(x.av)}"><i style="width:${Math.min(100, x.av).toFixed(1)}%"></i></span><b>${x.av.toFixed(1)} %</b><span class="vt-rv">${n ? `${candado}${N(n)} por revisar` : ''}</span></a>`; };
+    t.innerHTML = `<div class="vt-tab vt-full"><div class="vt-cab"><p class="vt-tt"><b>Ranking de ejecución${ambito ? ' · ' + esc(ambito) : ''}</b> · ${N(ls.length)} entidades, por avance (devengado / PIM). Cada una abre su ficha.</p>
+      ${cta('Acierta: quiero ver qué revisar en mi entidad', 'Ver cuáles son y por qué: prueba 7 días')}</div>
+      <div class="vt-rks" role="list">${ls.slice(0, 60).map((x, i) => fila(x, i, i === iu)).join('')}</div></div>`;
+    const caja = t.querySelector('.vt-rks');
+    conteos().then(rv => {   // con los conteos, la lista completa (por tramos para no trabar la pantalla en 1,894 filas)
+      caja.innerHTML = ls.map((x, i) => fila(x, i, i === iu, rv[x.u.cod])).join('');
+      const yo = caja.querySelector('#vt-yo'); let sc = caja;
+      while (sc && sc !== document.body && !(sc.scrollHeight > sc.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(sc).overflowY))) sc = sc.parentElement;
+      if (yo && sc && sc !== document.body) sc.scrollTop += yo.getBoundingClientRect().top - sc.getBoundingClientRect().top - sc.clientHeight / 2;
+    });
     document.querySelectorAll('#filt,#tabs').forEach(x => x.hidden = true);
   }
   window.Vitrina = { listo, ue, bloqueo, tablas, conteos, get activa() { return acceso === false; } };

@@ -729,3 +729,12 @@ h1.pd-title{-webkit-line-clamp:3!important}h1.pd-title.larga{font-size:clamp(15p
 .vt-mas{display:flex;align-items:center;gap:8px;margin:0!important}.vt-mas .vt-lk{width:18px;height:18px}
 .vt-tab{gap:7px!important;padding:12px 14px!important}.vt-rk{padding:5px 10px!important}.vt-rks{gap:2px!important}.vt-blur{gap:7px!important;padding:3px 10px!important}.vt-blur i{height:10px!important}
 .vt{gap:clamp(10px,1.4vh,18px)!important}.vt-grid>div{padding:clamp(10px,1.3vw,18px)!important}
+/* ranking completo abierto: cabecera con la llamada fija y la lista con su propio desplazamiento */
+.vt-full{height:100%;min-height:0;display:flex!important;flex-direction:column;gap:8px!important}
+.vt-cab{display:flex;flex-direction:column;gap:6px;flex:none}.vt-cab .btn{min-height:32px!important}
+.vt-full .vt-rks{flex:1;min-height:0;overflow:auto;position:relative;padding-right:4px}
+.vt-full .vt-rk{grid-template-columns:4.2ch minmax(0,1fr) minmax(50px,16%) 6.5ch 12ch}
+.vt-rv{display:inline-flex;align-items:center;gap:4px;justify-content:flex-end;font-size:var(--t-1);font-weight:700;color:var(--acc-txt,var(--ink2));white-space:nowrap}.vt-rv svg{width:13px;height:13px;color:var(--acc);flex:none}
+@media(max-width:640px){.vt-full .vt-rk{grid-template-columns:4ch minmax(0,1fr) 6.5ch;row-gap:2px}.vt-full .vt-b{display:none}.vt-rv{grid-column:2/-1;justify-content:flex-start}}
+.vt-cab{position:sticky;top:0;z-index:3;background:var(--card,#fff);padding:4px 0 8px;box-shadow:0 6px 8px -8px rgb(0 0 0/.25)}
+.vt-cab{align-self:stretch}.vt-full .vt-rks{align-self:stretch}
