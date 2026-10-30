@@ -710,3 +710,22 @@ h1.pd-title{-webkit-line-clamp:3!important}h1.pd-title.larga{font-size:clamp(15p
 .vt-tab{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 16px}.vt-tab p{margin:0;color:var(--ink2);font-size:var(--t-2);line-height:1.45}
 @media(max-width:900px){.vt-grid{grid-template-columns:1fr}.vt-pie{grid-template-columns:1fr}.vt-mods{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.vt-bar i{animation:none}}
+/* 30/10/2026 (pedido de David): todas las cifras legibles. Las cifras dejan la letra decorativa (trazos finos) y usan Manrope gruesa,
+   con cifras del mismo ancho; los titulos de texto conservan su letra. */
+:root{--f-num:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
+.po-n,.gauge .c b,.al .n,.hb-k b,.cg-p .n,.hb-idx b,.gs-p .v,.ct-p .ct-v,.tile .v,.fi-obh b,.kpi .v,.pd-kpi .v,.gs-top .n,.vt-grid b,.hb-kd b,.po-sv b,.po-seg strong,[class*="po-niv"] b,[class*="po-niv"] strong{font-family:var(--f-num)!important;font-weight:800!important;font-variation-settings:normal!important;letter-spacing:-.02em!important;font-variant-numeric:tabular-nums lining-nums!important}
+/* vitrina 30/10 (b): motivos, ranking con las 5 primeras y la entidad buscada resaltada */
+.vt-mot{list-style:none;margin:6px 0 2px;padding:0;display:flex;flex-direction:column;gap:3px;font-size:var(--t-2);color:var(--ink2);line-height:1.3}
+.vt-mot b{font-family:var(--f-num);font-weight:800;font-size:var(--t-3);color:var(--acc-txt,var(--ink));display:inline-block;min-width:2.2ch;text-align:right;margin-right:4px}
+.vt-xl{margin:10px 0 0!important;font-weight:600;color:var(--ink)!important}.vt-f{margin:6px 0 0!important;font-size:var(--t-1)!important;color:var(--mut)!important}
+.vt-tt{margin:0!important}.vt-rks{width:100%;display:flex;flex-direction:column;gap:4px}
+.vt-rk{display:grid;grid-template-columns:3.2ch minmax(0,1fr) minmax(60px,22%) 6.5ch;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:var(--t-2)}
+.vt-rk:hover{background:var(--sup);border-color:var(--line)}.vt-rk.yo{background:var(--acc-t2,#FBF3E2);border-color:var(--acc)}
+.vt-n{font-family:var(--f-num);font-weight:800;color:var(--mut);text-align:right}.vt-rk.yo .vt-n{color:var(--acc-txt,var(--ink))}
+.vt-nom{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}.vt-rk b{font-family:var(--f-num);font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.vt-b{height:7px;border-radius:4px;background:var(--grid,#E6E9EF);overflow:hidden}.vt-b i{display:block;height:100%;border-radius:4px;background:var(--c)}.vt-b.ok{--c:var(--ok)}.vt-b.warn{--c:var(--warn)}.vt-b.bad{--c:var(--bad)}
+.vt-gap{color:var(--mut);padding-left:12px;line-height:1}
+.vt-blur{width:100%;display:flex;flex-direction:column;gap:9px;padding:6px 10px}.vt-blur i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--line) 0 55%,transparent 55% 70%,var(--line) 70%);filter:blur(1.5px);opacity:.8}
+.vt-mas{display:flex;align-items:center;gap:8px;margin:0!important}.vt-mas .vt-lk{width:18px;height:18px}
+.vt-tab{gap:7px!important;padding:12px 14px!important}.vt-rk{padding:5px 10px!important}.vt-rks{gap:2px!important}.vt-blur{gap:7px!important;padding:3px 10px!important}.vt-blur i{height:10px!important}
+.vt{gap:clamp(10px,1.4vh,18px)!important}.vt-grid>div{padding:clamp(10px,1.3vw,18px)!important}

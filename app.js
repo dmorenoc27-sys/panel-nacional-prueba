@@ -580,7 +580,7 @@ async function _go(e){pedirPesados(e);document.getElementById('res-overlay')?.re
  $('sw').style.visibility=(!estado.nivel&&!estado.dpto)||(estado.nivel&&!estado.sector&&!estado.pliego)?'visible':'hidden';
  if(!sinMapa)mapa();
  if(sinMapa){$('ptabs').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p==='rank'));$('pRank').hidden=false;$('pDist').hidden=true}
- crumbs();tabla();tabla2();if(window.Vitrina&&Vitrina.activa)Vitrina.tablas();hash();starUI();nivUI();try{tituloVista()}catch(e){}$('tcard').querySelector('.wrap').scrollTop=0}
+ crumbs();tabla();tabla2();if(window.Vitrina&&Vitrina.activa)Vitrina.tablas(UES.filter(u=>(!estado.nivel||u.nivel===estado.nivel)&&(!nivF||u.nivel===nivF)&&(!estado.dpto||u.dpto===estado.dpto)&&(!estado.prov||u.prov===estado.prov)&&(!estado.dist||u.dist===estado.dist)&&(!estado.sector||u.sector===estado.sector)&&(!estado.pliego||u.pliego===estado.pliego)),[estado.dist||estado.prov?'':estado.dpto,nivF?NIV[nivF]:estado.nivel?NIV[estado.nivel]:''].filter(Boolean).join(' · '));hash();starUI();nivUI();try{tituloVista()}catch(e){}$('tcard').querySelector('.wrap').scrollTop=0}
 document.querySelectorAll('#secs a[data-i]').forEach(a=>a.insertAdjacentHTML('afterbegin',Ico(a.dataset.i)));
 if(window.ACIERTA){$('iso').innerHTML=ACIERTA.isoFlat({size:44,claro:true});ACIERTA.favicon()}
 // menú lateral plegable: se recuerda entre visitas; plegado deja solo los íconos y el tablero (y el mapa) ganan el ancho
