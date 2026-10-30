@@ -17,3 +17,15 @@ window.__nErr=0;window.addEventListener('error',e=>{if(++window.__nErr<=5&&windo
 (()=>{const ver=async()=>{try{const r=await fetch('version.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const v=await r.json();if(!window.__ver){window.__ver=v.commit||''}else if(v.commit&&v.commit!==window.__ver){const e=document.getElementById('toast');if(e){e.innerHTML='Hay datos nuevos publicados. <a href="#" id="toast-rec" style="color:#fff;font-weight:700;text-decoration:underline">Actualizar</a>';e.style.display='block';const a=document.getElementById('toast-rec');if(a)a.addEventListener('click',ev=>{ev.preventDefault();location.reload()})}}}catch(x){}};setTimeout(ver,4000);setInterval(ver,600000)})();
 // 29/10/2026: la clase "arranca" oculta el tablero hasta el primer pintado (cero saltos). Red de seguridad: pase lo que pase, a los 7 s se muestra todo.
 setTimeout(()=>document.documentElement.classList.remove('arranca'),7000);
+
+// 30/10/2026: códigos con guion o barra (F12-B, 001-2019-EF/63.01, LP-SM-4-2023-GICA-CS-1, fechas) nunca se parten entre dos líneas.
+// Se envuelven en <span class="nw"> (white-space:nowrap) sin cambiar ningún carácter: copiar y buscar siguen funcionando igual.
+(()=>{const RX=/[A-Za-zÁÉÍÓÚÑáéíóúñ0-9]+(?:[-\/][A-Za-zÁÉÍÓÚÑáéíóúñ0-9.]+)+/g,NO=/^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|OPTION|CODE|PRE)$/;
+ const nodo=t=>{const p=t.parentNode;if(!p||NO.test(p.nodeName)||(p.closest&&p.closest('.nw,svg,[contenteditable]')))return;const s=t.nodeValue;RX.lastIndex=0;if(!RX.test(s))return;RX.lastIndex=0;
+  const f=document.createDocumentFragment();let i=0,m;while(m=RX.exec(s)){if(m[0].length>34)continue;if(m.index>i)f.appendChild(document.createTextNode(s.slice(i,m.index)));const sp=document.createElement('span');sp.className='nw';sp.textContent=m[0];f.appendChild(sp);i=m.index+m[0].length}
+  if(!i)return;if(i<s.length)f.appendChild(document.createTextNode(s.slice(i)));p.replaceChild(f,t)};
+ const barre=r=>{if(!r||r.nodeType===3){r&&nodo(r);return}if(r.nodeType!==1||NO.test(r.nodeName))return;const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);const ts=[];let n;while(n=w.nextNode())if(/[-\/]/.test(n.nodeValue))ts.push(n);ts.forEach(nodo)};
+ let pend=new Set(),rq=0;const corre=()=>{rq=0;const l=[...pend];pend.clear();l.forEach(barre)};
+ const ob=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)pend.add(n);if(!rq)rq=requestAnimationFrame(corre)});
+ const ini=()=>{barre(document.body);ob.observe(document.body,{childList:true,subtree:true})};
+ if(document.body)ini();else document.addEventListener('DOMContentLoaded',ini)})();

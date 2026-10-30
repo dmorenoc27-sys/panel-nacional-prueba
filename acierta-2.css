@@ -605,3 +605,60 @@ h1.sec::after{content:"";display:block;width:44px;height:3px;border-radius:3px;b
  .secs a.on{background:rgba(224,168,46,.16)!important}
  .side{background:var(--noche)!important}
 }
+/* 30/10/2026 · Explorar con anillo: "Requiere decisión" plegable; la tabla gana el alto; columna izquierda más ancha y el mapa sin blanco sobrante */
+.hero .chips-tg{grid-column:1/-1;grid-row:3;display:flex;align-items:center;gap:10px;width:100%;margin-top:6px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--sup2);color:var(--ink);font:600 var(--t-2)/1.2 var(--f);cursor:pointer;text-align:left}
+.hero .chips-tg small{color:var(--mut);font-weight:500}.hero .chips-tg svg{margin-left:auto;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .2s var(--ease-out,ease-out)}
+.hero .chips-tg[aria-expanded=true] svg{transform:rotate(180deg)}.hero .chips-tg:hover{border-color:var(--acc)}
+.hero:has(.chips-tg) .chips{grid-row:4}
+.hero:has(.chips-tg) .chips:before{display:none}
+.hero:has(.chips-tg):not(.chips-ab) .chips{display:none!important}
+@media(prefers-reduced-motion:reduce){.hero .chips-tg svg{transition:none}}
+.board:has(> #hero:not([hidden])){grid-template-columns:minmax(300px,40fr) minmax(0,46fr) minmax(206px,21fr)}
+@media(max-width:1500px){.board:has(> #hero:not([hidden])){grid-template-columns:minmax(256px,36fr) minmax(0,50fr) minmax(200px,22fr)}}
+body.kpis-min .board:has(> #hero:not([hidden])){grid-template-columns:minmax(360px,58fr) minmax(0,42fr) 44px}
+body.side-min .board:has(> #hero:not([hidden])){grid-template-columns:minmax(360px,46fr) minmax(0,42fr) minmax(206px,20fr)}
+/* nombres en tablas: nunca cortar una palabra a la mitad */
+#tabla td,#tabla2 td,.wrap td,.wrap th{word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}
+#tabla td:first-child,#tabla2 td:first-child{min-width:0}
+#tabla .nm,#tabla2 .nm{font-size:var(--t-2);line-height:1.25}
+/* 30/10/2026 (2) · columna de mapa ajustada a su dibujo; la columna de detalle gana ancho; nombres en 2 líneas como máximo, sin partir palabras */
+.board:has(> #hero:not([hidden])){grid-template-columns:minmax(300px,46fr) minmax(0,34fr) minmax(206px,20fr)}
+@media(max-width:1500px){.board:has(> #hero:not([hidden])){grid-template-columns:minmax(256px,44fr) minmax(0,36fr) minmax(200px,20fr)}}
+body.kpis-min .board:has(> #hero:not([hidden])){grid-template-columns:minmax(360px,64fr) minmax(0,36fr) 44px}
+body.side-min .board:has(> #hero:not([hidden])){grid-template-columns:minmax(360px,52fr) minmax(0,32fr) minmax(206px,18fr)}
+#rowmapa .cb{display:flex;flex-direction:column;align-items:center;justify-content:center}#mapa{width:100%;max-height:100%}
+#tabla th:first-child,#tabla2 th:first-child{width:36%}
+#tabla td:first-child,#tabla2 td:first-child{white-space:normal}#tabla td:first-child .nm b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:normal;text-overflow:clip}
+#rowmapa h2 span{white-space:normal;overflow:visible;text-overflow:clip}
+#tabla td:not(:first-child),#tabla2 td:not(:first-child),#tabla th,#tabla2 th{white-space:nowrap}
+/* 30/10/2026 · cifras del año en la ficha de entidad: solo lectura (Inversiones y Alertas viven en sus módulos) */
+.hb-k{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.hb-k .hb-kd{min-width:0;display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:12px;background:var(--sup2);border:1px solid var(--line);cursor:default}
+.hb-k .hb-kd small{color:var(--mut);font-size:var(--t-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hb-k .hb-kd b{font-family:var(--f-num);font-weight:600;font-size:clamp(18px,1.6vw,24px);color:var(--ink)}
+@media(max-width:720px){.hb-k{grid-template-columns:1fr 1fr!important}}
+/* 30/10/2026 · nada cortado: códigos enteros, pie en dos líneas, textos completos donde antes había "…" */
+.nw{white-space:nowrap}
+footer{white-space:normal!important;height:auto!important;min-height:var(--fh);line-height:1.35!important;padding:5px var(--gap)!important;align-items:center}
+footer .pie-izq{font-size:11px;display:block;-webkit-line-clamp:unset;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;white-space:normal}
+.top .crumbs{display:flex;align-items:center;flex:1 1 auto!important;min-width:0}.crumbs>*{white-space:nowrap}
+.crumbs a{flex:0 4 auto;min-width:3.2em;overflow:hidden;text-overflow:ellipsis}.crumbs a:first-child{flex-shrink:0}.crumbs b{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}.crumbs span{flex:none}
+@media(max-width:640px){footer .pie-izq{display:block;-webkit-line-clamp:unset}}
+.hb-x small{-webkit-line-clamp:3!important;font-size:12.5px;line-height:1.3}
+@media(max-height:800px){.hb-x small{-webkit-line-clamp:3!important;font-size:12px;line-height:1.25}}
+.po-cta span{display:block!important;-webkit-line-clamp:unset!important;font-size:12.5px;line-height:1.35}
+.po-eb{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:var(--t-1)}
+.po-al a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.25}
+#alertas .al-tx,.alx-rn{-webkit-line-clamp:2!important}
+#alertas .al .t{-webkit-line-clamp:unset!important;display:block!important}
+h1.pd-title{-webkit-line-clamp:3!important}h1.pd-title.larga{font-size:clamp(15px,1.25vw,19px)!important}
+.tile .s,.tiles .s{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+.top #sw[style*="hidden"]{display:none!important}   /* el selector oculto ya no le quita espacio a la ruta */
+@media(min-width:641px){body{grid-template-rows:var(--hh) minmax(0,1fr) auto!important}body.portada{grid-template-rows:0 minmax(0,1fr) auto!important}}   /* el pie toma el alto de su texto (2 a 3 líneas) */
+.crumbs .cr-mas{flex:none;color:var(--mut);cursor:help;padding:0 2px}
+@media(max-width:640px){
+ .crumbs b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.2}
+ .hb-k .hb-kd small{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.2}
+ h1.pd-title{-webkit-line-clamp:unset!important;display:block!important;overflow:visible!important}
+ #tabla th,#tabla2 th{font-size:11px;padding-left:4px;padding-right:4px;text-overflow:clip!important;overflow:visible!important}
+}
+.ov-hdr .pd-cui{flex-wrap:nowrap}.ov-hdr .pd-cui>span{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;min-width:0;line-height:1.25}
