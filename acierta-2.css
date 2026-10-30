@@ -525,7 +525,7 @@ h1.sec{font-size:inherit;font-weight:inherit;margin:inherit;border:0;padding:0;l
 @media(max-height:820px){#porta{overflow:auto!important}
  .po-arco{width:112px!important;height:112px!important}.po-n{font-size:clamp(40px,6.5vh,56px)}.po-sub,.po-esp{font-size:var(--t-2);line-height:1.35}
  .po-marca2 .po-iso2 svg{width:48px;height:48px}.po-marca2{margin-bottom:0}
- .po-al{line-height:1.45;display:grid;grid-template-columns:1fr 1fr;column-gap:14px;row-gap:3px}.po-al a{margin-right:0;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-al a:first-of-type{grid-column:1/-1}
+ .po-al-l{line-height:1.45;display:grid;grid-template-columns:1fr 1fr;column-gap:14px;row-gap:3px}.po-al a{margin-right:0;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-al a:first-of-type{grid-column:1/-1}
  .po-seg{padding:6px 18px 6px 10px;row-gap:3px}.po-seg .po-sv{font-size:var(--t-5)}.po-q{height:48px}.po-ej{margin:4px 0 2px}.po-entrar{margin-top:2px}
  .po-mas{font-size:var(--t-1);line-height:1.4}.po-cta{margin-top:0}.po-txt{gap:5px}.po-eb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .lens-nota{grid-column:1/-1;margin:-4px 0 0;font-size:var(--t-1)}
@@ -662,3 +662,26 @@ h1.pd-title{-webkit-line-clamp:3!important}h1.pd-title.larga{font-size:clamp(15p
  #tabla th,#tabla2 th{font-size:11px;padding-left:4px;padding-right:4px;text-overflow:clip!important;overflow:visible!important}
 }
 .ov-hdr .pd-cui{flex-wrap:nowrap}.ov-hdr .pd-cui>span{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;min-width:0;line-height:1.25}
+/* 30/10/2026 · puesto en las tablas: los 3 primeros en dorado, el resto en gris; sin recuadro (el "3" azul era una regla vieja que contaba la fila del encabezado) */
+.nm .rk{background:transparent!important;color:var(--mut)!important;font-weight:600!important}.nm .rk.top{color:var(--acc-txt)!important;font-weight:700!important}
+/* 30/10: panel abierto con fondo de semáforo: cifra y textos en blanco (antes la cifra quedaba roja sobre rojo) */
+:is(.gs-p,.ct-p).on :is(.v,.ct-v,.n,b,strong){color:#fff!important}
+:is(.gs-p,.ct-p).on :is(.k,.m,.s,.y,.ct-k,.ct-s,.ct-y,small,span){color:rgba(255,255,255,.9)!important}
+
+/* 30/10: portada sin scroll; "Hoy conviene revisar" se despliega al hacer clic, como tarjeta flotante (no empuja nada) */
+.po-al{position:relative;line-height:1.4}
+.po-al>summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;list-style:none;font-weight:600;color:var(--p);padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.po-al>summary::-webkit-details-marker{display:none}
+.po-al>summary::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:0 1.6px 1.6px 0;transform:rotate(45deg);margin-top:-3px;transition:transform var(--d-2,.2s)}
+.po-al[open]>summary::after{transform:rotate(-135deg);margin-top:3px}
+.po-al>summary:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+.po-al-l{position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;width:min(560px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:var(--r3,12px);box-shadow:0 12px 32px -12px rgb(15 33 71/.35);padding:12px 14px}
+@media(max-width:640px){.po-al-l{position:static;width:auto;margin-top:8px;grid-template-columns:1fr!important}}
+.po-al-l{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}.po-al-l a:first-of-type{grid-column:1/-1}
+@media(min-width:641px){.po-cta{grid-template-columns:auto auto 1fr!important;padding:8px 12px!important}.po-cta>span{grid-column:1/-1}}
+.po-mas{align-items:center}.po-mas .po-al{margin-right:6px}
+@media(min-width:641px) and (max-height:820px){.po-iso2 svg{width:44px!important;height:44px!important}.po-marca2 b{font-size:clamp(26px,3vw,38px)!important}}
+@media(min-width:641px) and (max-height:820px){.po-iso2,.po-iso2 svg{width:48px!important;height:48px!important}.po-arco{width:88px!important;height:88px!important}.po-marca2{margin-bottom:0!important}}
+@media(min-width:641px) and (max-height:760px){.po-eb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-hl{max-width:none!important;font-size:clamp(15px,1.3vw,19px)!important}.po-mas{gap:2px 12px!important}}
+@media(min-width:641px) and (max-height:760px){.po-eb{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}}
+@media(min-width:641px) and (max-height:700px){.po-esp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-cta{grid-template-columns:minmax(0,1fr) auto auto!important}.po-cta>span{grid-column:auto!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical;overflow:hidden;font-size:12px!important}.po-entrar{gap:4px!important}}

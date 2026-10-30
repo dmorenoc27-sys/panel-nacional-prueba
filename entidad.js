@@ -381,10 +381,14 @@
         const tip = n === 1
           ? `<b>${arr[0].cui}</b> ${arr[0].nombre}<br>${ESTINV[arr[0].est][0]}`
           : `<b>${n} inversiones en este punto</b><br>${arr.slice(0, 8).map(x => `<span class="nac-cui" data-cui="${x.cui}" style="${onGoto ? 'cursor:pointer;text-decoration:underline' : ''}">${x.cui}</span> · ${ESTINV[x.est][0]}`).join('<br>')}${n > 8 ? `<br>y ${n - 8} más…` : ''}`;
-        const mk = L.marker([lat, lon], { icon: ic }).addTo(mp).bindTooltip(tip, n > 1 ? { interactive: true } : undefined);
+        // 30/10: con varios CUI el tooltip se cerraba al mover el ratón hacia él; ahora clic en el punto abre una ventanita fija con los CUI clicables
+        const mk = L.marker([lat, lon], { icon: ic }).addTo(mp).bindTooltip(n > 1 ? tip + (onGoto ? '<br><small>clic en el punto para elegir un CUI</small>' : '') : tip);
         if (onGoto) {
           if (n === 1) mk.on('click', () => onGoto(arr[0].cui));
-          else mk.on('tooltipopen', e => { const el2 = e.tooltip.getElement(); if (el2) el2.querySelectorAll('.nac-cui').forEach(s => s.onclick = ev => { ev.stopPropagation(); onGoto(s.dataset.cui); }); });
+          else {
+            mk.bindPopup(tip, { closeButton: true, autoPan: true });
+            mk.on('popupopen', e => { mk.closeTooltip(); const el2 = e.popup.getElement(); if (el2) el2.querySelectorAll('.nac-cui').forEach(s => { s.setAttribute('role', 'link'); s.tabIndex = 0; s.onclick = ev => { ev.stopPropagation(); mp.closePopup(); onGoto(s.dataset.cui); }; s.onkeydown = ev => { if (ev.key === 'Enter') s.onclick(ev); }; }); });
+          }
         }
         pts.push([lat, lon]);
       });
