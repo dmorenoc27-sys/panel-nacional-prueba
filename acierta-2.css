@@ -529,3 +529,79 @@ h1.sec{font-size:inherit;font-weight:inherit;margin:inherit;border:0;padding:0;l
  .po-seg{padding:6px 18px 6px 10px;row-gap:3px}.po-seg .po-sv{font-size:var(--t-5)}.po-q{height:48px}.po-ej{margin:4px 0 2px}.po-entrar{margin-top:2px}
  .po-mas{font-size:var(--t-1);line-height:1.4}.po-cta{margin-top:0}.po-txt{gap:5px}.po-eb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .lens-nota{grid-column:1/-1;margin:-4px 0 0;font-size:var(--t-1)}
+
+/* =====================================================================================================================
+   §21 RUMBO (30/10/2026) · identidad propia para todas las vistas
+   Idea: Acierta = "en el blanco". El marco de la app es oscuro (azul noche) y lo único dorado es lo que marca el rumbo:
+   la sección activa, la aguja de lo esperado y las señales que piden atención. Títulos de vista protagonistas en Fraunces,
+   cifras grandes, tarjetas con filo de semáforo. Solo presentación: ninguna cifra, regla ni función cambia.
+   ===================================================================================================================== */
+:root{--noche:#0B2147;--noche2:#123366;--noche-t:#9FB4D6;--noche-l:rgba(255,255,255,.12)}
+/* marco: barra lateral azul noche */
+.side{background:linear-gradient(180deg,var(--noche) 0%,#0A1E40 100%)!important;border-right:0!important;color:#fff}
+.brand,.brand b,#marca{color:#fff!important}.brand small{color:var(--noche-t)!important}
+.qbox input{background:rgba(255,255,255,.07)!important;border:1px solid var(--noche-l)!important;color:#fff!important}
+.qbox input::placeholder{color:var(--noche-t)!important;opacity:1}.qbox>svg{stroke:var(--noche-t)!important}
+.qbox input:focus{background:rgba(255,255,255,.12)!important;border-color:var(--acc)!important;box-shadow:0 0 0 3px rgba(224,168,46,.25)!important}
+.secs a{color:#D3DEEE!important}.secs a .ico{color:var(--noche-t)!important}
+.secs a:hover{background:rgba(255,255,255,.06)!important;color:#fff!important}.secs a:hover .ico{color:#fff!important}
+.secs a.on{background:rgba(224,168,46,.13)!important;color:#fff!important;font-weight:700}.secs a.on .ico{color:var(--acc)!important}
+#nav-ind{background:var(--acc)!important}
+.secs a[data-s="entidad"] .ico{color:var(--acc-hi)!important}
+.side-f{border-color:var(--noche-l)!important}
+.corte-btn{background:rgba(255,255,255,.06)!important;border:1px solid var(--noche-l)!important;color:#fff!important}
+.corte-btn small{color:var(--noche-t)!important}.side .corte-btn b,.side .corte-btn #corte{color:#fff!important}.side .corte-btn.hist b{color:var(--acc-hi)!important}.corte-btn .ico,.corte-btn svg{color:var(--acc-hi)!important;stroke:currentColor}
+.side-tg{color:var(--noche-t)!important}.side-tg:hover{color:#fff!important}
+.side :focus-visible{outline:2px solid var(--acc)!important;outline-offset:2px;box-shadow:none!important}
+/* cabecera de la vista: limpia, sobre el papel */
+header.top{background:transparent!important;border-bottom:1px solid var(--line)!important}
+.crumbs a{color:var(--p)}.crumbs b,.crumbs span:last-child{color:var(--ink)}
+/* títulos de vista protagonistas */
+h1.sec,.ent-h,.pd-title,#uep h1{font-family:var(--f-num)!important;font-variation-settings:"opsz" 144;letter-spacing:-.01em}
+h1.sec{font-size:clamp(22px,2vw,28px)!important;font-weight:600!important;color:var(--p2)!important;text-transform:none!important;letter-spacing:-.01em!important;margin:0 0 var(--s-3)!important;line-height:1.1!important}
+h1.sec::after{content:"";display:block;width:44px;height:3px;border-radius:3px;background:var(--acc);margin-top:8px}
+/* tarjetas con filo de semáforo y cifra protagonista */
+.card,.al,.hb-t,.lens a,.rk-card,.po-seg{border-radius:14px}
+.al{background:var(--sup);border:1px solid var(--line)!important;border-left-width:4px!important;transition:transform .18s var(--ease-out,ease-out),box-shadow .18s}
+.al .n{font-family:var(--f-num)!important;font-weight:600!important;letter-spacing:-.02em}
+@media(hover:hover){.al:hover,.hb-t:hover,.lens a:hover,.po-seg:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(11,33,71,.45)}}
+.al.on{background:linear-gradient(90deg,var(--acc-t1),var(--sup) 60%)!important}
+/* Explorar: las tres entradas como puertas */
+.lens a{background:var(--sup);border:1px solid var(--line);border-left:4px solid var(--p);position:relative;overflow:hidden}
+.lens a b{font-family:var(--f-num);font-weight:600;font-size:clamp(18px,1.5vw,22px);color:var(--p2)}
+.lens a::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out,ease-out)}
+.lens a:hover::after{transform:scaleX(1)}
+/* tablas: cabecera de papel, fila activa con filo dorado */
+.wrap table th,#tabla th{background:var(--sup2);color:var(--mut);font-weight:600}
+.wrap table tr.l:hover td:first-child,#tabla tr:hover td:first-child{box-shadow:inset 3px 0 0 var(--acc)}
+/* ficha de entidad: módulos con icono en círculo y cifra en Fraunces */
+.hb-t{background:var(--sup);border:1px solid var(--line)}
+.hb-i{width:44px!important;height:44px!important;border-radius:50%!important;background:var(--p-t1)!important;display:grid!important;place-items:center;flex:none}
+.hb-t[data-go=al] .hb-i{background:#FBE9E7!important}
+.hb-t:hover .hb-i{background:var(--acc-t1)!important}.hb-t:hover .hb-i .ico{color:var(--acc-txt)!important}
+.hb-n{font-family:var(--f-num)!important;font-weight:600}
+.hb-k button{border-radius:12px}.hb-k b{font-family:var(--f-num)!important;font-weight:600!important;letter-spacing:-.01em}
+.hb-res{border-top:4px solid var(--p2)!important}
+/* portada: la cifra manda; las señales del día como fichas con punto de color */
+.po-n{letter-spacing:-.03em}
+.po-al a{position:relative;padding-left:14px}.po-al a::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:var(--bad)}
+.po-al a[data-a=f12b]::before,.po-al a[data-a=sin_et]::before{background:var(--acc)}.po-al a[data-a=por_cerrar]::before{background:var(--ok)}.po-al a[data-a=contr_sin_dev]::before{background:var(--acc-lo)}
+.po-seg{border:1px solid var(--line)!important}
+/* Comparar */
+.rk-tabs button.on{background:var(--p2)!important;color:#fff!important}
+.cmp .card{border-top:4px solid var(--p)}.cmp .card:nth-child(2){border-top-color:var(--acc)}
+/* Mi entidad */
+.ent-ul .ico{background:var(--p-t1);border-radius:50%;padding:8px;width:38px!important;height:38px!important;box-sizing:border-box}
+.ent-card{border-top:4px solid var(--acc)!important}
+/* entrada coreografiada de la vista (una sola vez por cambio de vista) */
+@keyframes rumbo-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#board>.page:not([hidden])>*,#board>.page:not([hidden]) .alert-grid>.al{animation:rumbo-in .42s var(--ease-out,cubic-bezier(.22,1,.36,1)) both}
+#board>.page:not([hidden])>*:nth-child(2){animation-delay:.05s}#board>.page:not([hidden])>*:nth-child(3){animation-delay:.1s}
+.alert-grid>.al:nth-child(n){animation-delay:calc(.03s * var(--i,0))}
+@media(prefers-reduced-motion:reduce){#board>.page:not([hidden])>*,#board>.page:not([hidden]) .alert-grid>.al,.al,.hb-t,.lens a,.lens a::after,.po-seg{animation:none!important;transition:none!important}}
+/* móvil: el marco oscuro arriba y la barra de secciones abajo, mismo azul noche */
+@media(max-width:640px){
+ .secs{background:var(--noche)!important;border-top:1px solid var(--noche-l)!important}
+ .secs a.on{background:rgba(224,168,46,.16)!important}
+ .side{background:var(--noche)!important}
+}

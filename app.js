@@ -572,7 +572,7 @@ async function _go(e){pedirPesados(e);document.getElementById('res-overlay')?.re
  if(sinMapa){$('ptabs').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p==='rank'));$('pRank').hidden=false;$('pDist').hidden=true}
  crumbs();tabla();tabla2();hash();starUI();nivUI();try{tituloVista()}catch(e){}$('tcard').querySelector('.wrap').scrollTop=0}
 document.querySelectorAll('#secs a[data-i]').forEach(a=>a.insertAdjacentHTML('afterbegin',Ico(a.dataset.i)));
-if(window.ACIERTA){$('iso').innerHTML=ACIERTA.isoFlat({size:44});ACIERTA.favicon()}
+if(window.ACIERTA){$('iso').innerHTML=ACIERTA.isoFlat({size:44,claro:true});ACIERTA.favicon()}
 // menú lateral plegable: se recuerda entre visitas; plegado deja solo los íconos y el tablero (y el mapa) ganan el ancho
 (()=>{const tg=$('side-tg');const pon=min=>{document.body.classList.toggle('side-min',min);tg.setAttribute('aria-expanded',String(!min));tg.title=min?'Mostrar el menú':'Ocultar el menú (más espacio para el mapa)';tg.querySelector('span').textContent=min?'Mostrar menú':'Ocultar menú';};
 pon(false);   // 22/10/2026: por defecto el menú siempre abierto (pedido de David); el pliegue dura solo la visita
