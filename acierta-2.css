@@ -685,3 +685,28 @@ h1.pd-title{-webkit-line-clamp:3!important}h1.pd-title.larga{font-size:clamp(15p
 @media(min-width:641px) and (max-height:760px){.po-eb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-hl{max-width:none!important;font-size:clamp(15px,1.3vw,19px)!important}.po-mas{gap:2px 12px!important}}
 @media(min-width:641px) and (max-height:760px){.po-eb{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}}
 @media(min-width:641px) and (max-height:700px){.po-esp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.po-cta{grid-template-columns:minmax(0,1fr) auto auto!important}.po-cta>span{grid-column:auto!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical;overflow:hidden;font-size:12px!important}.po-entrar{gap:4px!important}}
+/* 30/10/2026 · vitrina: ficha publica de la entidad (lo del MEF + puesto + cuantas conviene revisar) y aviso en las vistas de detalle */
+.vt{padding:clamp(16px,2.2vw,28px)!important;display:flex;flex-direction:column;gap:clamp(12px,1.8vh,22px);height:100%;min-height:0;overflow:auto}
+.vt-h small{font-size:var(--t-2);color:var(--mut);font-weight:600}.vt-h h1{margin:4px 0 0}
+.vt-grid{display:grid;grid-template-columns:1.25fr 1fr 1.2fr;gap:clamp(10px,1.4vw,18px)}
+.vt-grid>div{border:1px solid var(--line);border-radius:var(--r3,12px);padding:clamp(12px,1.6vw,20px);background:var(--sup);display:flex;flex-direction:column;gap:4px;min-width:0}
+.vt-grid b{font-family:var(--f-num);font-weight:600;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.vt-grid b i{font-style:normal;font-size:.45em;margin-left:2px;color:var(--mut)}
+.vt-grid span{font-weight:600;color:var(--ink2)}.vt-grid small{color:var(--mut);font-size:var(--t-2);line-height:1.35}
+.vt-av{border-left:5px solid var(--c)!important}.vt-av.ok{--c:var(--ok)}.vt-av.warn{--c:var(--warn)}.vt-av.bad{--c:var(--bad)}.vt-av b{color:var(--c)}
+.vt-bar{height:8px;border-radius:4px;background:var(--grid,#E6E9EF);overflow:hidden;margin:6px 0 2px}.vt-bar i{display:block;height:100%;background:var(--c);border-radius:4px;transform-origin:left;animation:vtBar .9s cubic-bezier(.19,1,.22,1) both}
+@keyframes vtBar{from{transform:scaleX(0)}}
+.vt-rev{border-left:5px solid var(--acc)!important}.vt-rev b{color:var(--acc-txt,var(--ink))}
+.vt-ghost{display:flex;flex-direction:column;gap:6px;margin:6px 0 4px}.vt-ghost i{display:block;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--line),transparent);filter:blur(1.2px)}
+.vt-ghost i:nth-child(2){width:82%}.vt-ghost i:nth-child(3){width:64%}.vt-ghost i:nth-child(4){width:74%}
+.vt-pie{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(12px,2vw,28px);align-items:start}
+.vt-pie h2{font-size:var(--t-3);margin:0 0 8px;border:0;padding:0}
+.vt-mods{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.vt-mods li{display:grid;grid-template-columns:22px 1fr;column-gap:8px;align-items:start}.vt-mods b{font-size:var(--t-2);color:var(--ink)}.vt-mods small{grid-column:2;color:var(--mut);font-size:var(--t-1);line-height:1.3}
+.vt-lk{width:20px;height:20px;color:var(--acc);grid-row:span 2}.vt-lk svg{width:100%;height:100%;display:block}
+.vt-ofe p{margin:0 0 12px;color:var(--ink2);font-size:var(--t-2);line-height:1.45}
+.vt-cta{display:flex;flex-wrap:wrap;gap:8px}.vt-cta .btn{text-decoration:none;min-height:36px;display:inline-flex;align-items:center;padding:0 14px}
+.vt-sola{max-width:880px;margin:0 auto;align-items:flex-start}.vt-sola>p{margin:0;color:var(--ink2);max-width:62ch}.vt-lk-g{width:34px;height:34px}
+.vt-tab{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 16px}.vt-tab p{margin:0;color:var(--ink2);font-size:var(--t-2);line-height:1.45}
+@media(max-width:900px){.vt-grid{grid-template-columns:1fr}.vt-pie{grid-template-columns:1fr}.vt-mods{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.vt-bar i{animation:none}}

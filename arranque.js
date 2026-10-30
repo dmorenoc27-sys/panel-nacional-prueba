@@ -1,5 +1,9 @@
 /* arranque.js: lo que antes vivía inline en index.html (29/10/2026, CSP sin 'unsafe-inline' en script-src). Se carga sin defer, antes de todo. */
 // Versión de PRUEBA (prueba.js define window.DATA_BASE): los datos se leen del repo de producción (raw.githubusercontent.com) y aquí solo vive el código
+// 30/10/2026 vitrina: lo que se ve sin contrato vive en pub/ (abierto); data/, reportes/ y pi/ van detras de Cloudflare Access.
+// data/acceso.json solo responde a quien tiene acceso: con eso la interfaz sabe si mostrar el detalle o la vitrina.
+(()=>{const PUB=/^data\/(resumen|departamentos|serie_mensual|hist|cubos|alertas_resumen|ues|territorio|calidad)\.json(\?|$)/;const f0=window.fetch;window.fetch=function(u,o){if(typeof u==='string'&&PUB.test(u))u='pub/'+u.slice(5);return f0.call(this,u,o)};
+ window.ACCESO=f0.call(window,'data/acceso.json',{cache:'no-store',redirect:'manual',credentials:'same-origin'}).then(r=>r.ok&&r.type!=='opaqueredirect').catch(()=>false)})();
 if(window.DATA_BASE){const f0=window.fetch;window.fetch=function(u,o){if(typeof u==='string'&&/^(data|reportes|pi)\//.test(u)&&u!=='data/alertas_resumen.json')u=window.DATA_BASE+u.split('?')[0];return f0.call(this,u,o)}}
 
 window.hoyPE=()=>new Date().toLocaleDateString("sv-SE",{timeZone:"America/Lima"});   /* 29/10/2026: "hoy" siempre en hora del Perú (antes UTC: a las 19:00 ya era mañana) */window.ACIERTA_API='https://api.acierta.pe';/* servicio de carga del Agente Acierta (api.acierta.pe). Vacío hasta desplegar el Worker: ver Agente/worker/DESPLIEGUE.md */

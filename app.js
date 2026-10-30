@@ -549,11 +549,18 @@ function atras(){const ov=document.getElementById('res-overlay');if(ov){ov.remov
 function revelar(){if(document.documentElement.classList.contains('arranca'))requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove('arranca')))}   /* 29/10/2026: el tablero se muestra ya pintado (CLS: los saltos de un tablero invisible no cuentan ni se ven) */
 let ULT_U=null;async function go(e){try{return await _go(e)}catch(x){pnErr&&pnErr(x&&x.message||x,'go');throw x}finally{revelar()}}   /* pase lo que pase, al terminar de pintar se muestra */
 /* 29/10/2026: datos pesados solo cuando una vista los necesita (alertas.json 8 MB, territorio.json 5 MB); mientras llegan se pinta con lo que hay y se repinta al llegar */
-let _pedA=null,_pedT=null;function pedirPesados(e){const sec=e.sec||'';const quiereA=!!(e.ue||e.cui||['vigilancia','cartera','cui','inicio'].includes(sec)||e.dpto||e.prov||e.dist||e.pliego||e.sector||e.nivel);const quiereT=!!((!e.ue&&!e.cui&&(e.dpto||e.prov||e.dist))||sec==='comparar'||sec==='cartera');
+let _pedA=null,_pedT=null;function pedirPesados(e){if(window.Vitrina&&Vitrina.activa)return;const sec=e.sec||'';const quiereA=!!(e.ue||e.cui||['vigilancia','cartera','cui','inicio'].includes(sec)||e.dpto||e.prov||e.dist||e.pliego||e.sector||e.nivel);const quiereT=!!((!e.ue&&!e.cui&&(e.dpto||e.prov||e.dist))||sec==='comparar'||sec==='cartera');
  if(quiereA&&!(A&&!A.ligero)&&!_pedA){_pedA=j('data/alertas.json').then(x=>{A=x;go(estado)}).catch(()=>{_pedA=null})}
  if(quiereT&&!BASE.T&&!_pedT){_pedT=j('data/territorio.json').then(x=>{BASE.T=x;if(!CORTE)T=x;else T={...x,...T};go(estado)}).catch(()=>{_pedT=null})}}
+/* 30/10/2026 vitrina: sin acceso, la ficha de una entidad es la publica y las vistas de detalle muestran que hay detras */
+async function vitrinaGo(sec){const fin=()=>{try{crumbs();hash();tituloVista()}catch(e){}};
+ if(estado.ue){const u=UES.find(x=>x.cod===String(estado.ue));if(!u)return false;vista('ue');U=u;await Vitrina.ue($('uep'),u,UES);fin();return true}
+ const T={cui:'Ficha de la inversión',vigilancia:'Alertas',comparar:'Comparar entidades',cartera:'Mi cartera',funcion:'Explorar por función',explorar:'Explorar inversiones'};
+ const k=estado.cui?'cui':sec==='explorar'?(drill(estado)?'':'explorar'):sec;
+ if(T[k]){vista('ue');Vitrina.bloqueo($('uep'),T[k]);fin();return true}
+ return false}
 async function _go(e){pedirPesados(e);document.getElementById('res-overlay')?.remove();document.getElementById('inv-overlay')?.remove();estado={...e};if((estado.ue&&bloqUE(estado.ue))||(estado.sector&&bloq({nivel:estado.nivel,sector:estado.sector}))||(estado.sec==='entidad'&&estado.ent&&bloqUE(estado.ent)))return bloqAviso();if(estado.dpto&&!estado.ue&&DEP.length&&!DEP.some(d=>d.nombre===estado.dpto)){toast('No encontramos ese departamento');estado={};}   /* 29/10: #/dpto/NOEXISTE ya no pinta "0 inversiones" */
- fchip='';if(U)ULT_U=U;U=null;const y=ANIO;const sec=seccion();$('sw').style.visibility='hidden';
+ fchip='';if(U)ULT_U=U;U=null;const y=ANIO;const sec=seccion();if(window.Vitrina&&await Vitrina.listo()&&await vitrinaGo(sec))return;$('sw').style.visibility='hidden';
  if(estado.ue||sec!=='inicio'&&sec!=='explorar'||(sec==='explorar'&&!drill(estado))){vista(estado.ue?'ue':(sec==='explorar'?'explorar0':sec));
   if(estado.ue){U=await ficha(estado.ue);if(!U){$('uep').innerHTML=`<div class="card" style="max-width:640px;margin:40px auto;padding:26px 28px"><h2 style="margin:0 0 8px;border:0;padding:0;white-space:normal">No encontramos la unidad ejecutora ${String(estado.ue).replace(/[^\w-]/g,'')}</h2><p class="mutx" style="margin:0 0 14px">No aparece en los datos abiertos del MEF consultados el ${fCorte(R.corte)}. Prueba a buscarla por nombre.</p><button type="button" class="btn p" onclick="atras()">Volver</button></div>`;return}estado.nivel=U.nivel;estado.sector=U.sector;estado.pliego=U.pliego;const ux=UES.find(x=>x.cod===estado.ue);if(ux&&!estado.dpto){estado.dpto=ux.dpto;if(ux.nivel==='M'){estado.prov=ux.prov;estado.dist=ux.dist}}}
   crumbs();hash();starUI();nivUI();try{tituloVista()}catch(e){}track('vista',{sec,ue:estado.ue||'',cui:estado.cui||'',dpto:estado.dpto||'',mod:estado.mod||''});
@@ -573,7 +580,7 @@ async function _go(e){pedirPesados(e);document.getElementById('res-overlay')?.re
  $('sw').style.visibility=(!estado.nivel&&!estado.dpto)||(estado.nivel&&!estado.sector&&!estado.pliego)?'visible':'hidden';
  if(!sinMapa)mapa();
  if(sinMapa){$('ptabs').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p==='rank'));$('pRank').hidden=false;$('pDist').hidden=true}
- crumbs();tabla();tabla2();hash();starUI();nivUI();try{tituloVista()}catch(e){}$('tcard').querySelector('.wrap').scrollTop=0}
+ crumbs();tabla();tabla2();if(window.Vitrina&&Vitrina.activa)Vitrina.tablas();hash();starUI();nivUI();try{tituloVista()}catch(e){}$('tcard').querySelector('.wrap').scrollTop=0}
 document.querySelectorAll('#secs a[data-i]').forEach(a=>a.insertAdjacentHTML('afterbegin',Ico(a.dataset.i)));
 if(window.ACIERTA){$('iso').innerHTML=ACIERTA.isoFlat({size:44,claro:true});ACIERTA.favicon()}
 // menú lateral plegable: se recuerda entre visitas; plegado deja solo los íconos y el tablero (y el mapa) ganan el ancho
