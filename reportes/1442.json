@@ -1,0 +1,72 @@
+{
+  "ue": "1442",
+  "nombre": "UE 118 MEJORAMIENTO DE LA CALIDAD DE LA EDUCACIÓN BÁSICA Y SUPERIOR",
+  "plantilla": "reportes/1442.pptx",
+  "archivo": "Exposicion_PMESUT_PMESTP",
+  "tc": 3.418,
+  "programas": [
+    {
+      "id": "PMESUT",
+      "slide_ppto": 5,
+      "slide_cartera": 13,
+      "slide_mapa": 12,
+      "costo_inicial": 683500000,
+      "vs": "vs. viabilidad inicial",
+      "tc": 3.418,
+      "componentes": ["C1", "C2", "C3", "C4"],
+      "comp_fijo": {"C1": {"monto": 31300000, "resta_de": "C4"}},
+      "razones": [
+        "Procesos de contratación de supervisión de los proyectos Medicina Tropical, Ovinos y Caprinos y Altiplano La Raya, presentaron un conjunto de quejas que originaron demoras o la caída del proceso de selección, postergando el inicio de obras",
+        "La demora en la solución de temas externos a la obra como la instalación de la media tensión, o medidas cautelares contra resolución de contrato, originó a que no se pudiera avanzar en más frentes o que se paralizara la ejecución.",
+        "Los equipamientos requerían una validación de las especificaciones técnicas por parte del mercado, encontrándose la necesitad de actualizar la mayoría de las  especificaciones técnicas y de sus precios referenciales."
+      ],
+      "cuis": [
+        {"cui": "2383140", "alias": "Calidad y pertinencia – Gestión Programa", "comp": "C4"},
+        {"cui": "2382580", "alias": "Fondos concursables", "comp": "C2"},
+        {"cui": "2314836", "alias": "PIP UNTRM – Medicina Tropical", "comp": "C3", "nombre": "Construcción y equipamiento del instituto de medicina tropical de la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas", "mapa": ["Rectángulo 80", "Rectángulo 79"]},
+        {"cui": "2301079", "alias": "PIP Piura", "comp": "C3", "nombre": "Creación del pabellón de laboratorios para el mejoramiento del servicio educativo de la facultad de ing. industrial de la Universidad Nacional de Piura", "mapa": ["Rectángulo 56", "Rectángulo 8"]},
+        {"cui": "2252835", "alias": "PIP UNMSM", "comp": "C3", "nombre": "Mejoramiento y ampliación de los servicios académicos y administrativos de las E.P. de tecnología médica y enfermería de la Facultad de Medicina Humana de la UNMSM", "mapa": ["Rectángulo 104", "Rectángulo 103"]},
+        {"cui": "2251110", "alias": "PIP UNI", "comp": "C3", "nombre": "Mejoramiento del servicio de formación profesional en ing. eléctrica de la Universidad Nacional de Ingeniería", "mapa": ["Rectángulo 161", "Rectángulo 160"]},
+        {"cui": "2411120", "alias": "PIP Molina", "comp": "C3", "nombre": "Creación del parque de tecnología e innovación para el agro de la Universidad Nacional Agraria La Molina", "mapa": ["Rectángulo 166", "Rectángulo 165"]},
+        {"cui": "2314501", "alias": "PIP UNTRM – Ovinos y Caprinos", "comp": "C3", "nombre": "Creación de los servicios de investigación y enseñanza en ovinos y caprinos de la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas", "mapa": ["Rectángulo 73", "Rectángulo 72"]},
+        {"cui": "2353850", "alias": "PIP Altiplano", "comp": "C3", "nombre": "Creación del servicio de laboratorios en biotecnologías para camélidos sudamericanos en el CIP La Raya de la Universidad Nacional del Altiplano", "mapa": ["Rectángulo 98", "Rectángulo 97"]},
+        {"cui": "2411125", "alias": "PIP IEST 4 de Junio 1821", "comp": "C3", "nombre": "Mejoramiento del servicio de educación superior tecnológica del IESTP 4 de Junio de 1821 del distrito y provincia de Jaén", "mapa": ["Rectángulo 68", "Rectángulo 67"]},
+        {"cui": "2234830", "alias": "PIP IEST Santiago Antúnez de Mayolo", "comp": "C3", "nombre": "Mejoramiento de los servicios de educación superior tecnológica del IESTP Santiago Antúnez de Mayolo", "mapa": ["Rectángulo 92", "Rectángulo 91"]},
+        {"cui": "2326336", "alias": "PIP UNSM", "comp": "C3", "nombre": "Mejoramiento de ocho laboratorios de la facultad de ingeniería agroindustrial de la Universidad Nacional de San Martín", "mapa": ["Rectángulo 86", "Rectángulo 85"], "sin_ppto": true}
+      ],
+      "cartera": ["2326336", "2411125", "2252835", "2301079", "2411120", "2234830", "2251110", "2353850", "2314836", "2314501"]
+    },
+    {
+      "id": "PMESTP",
+      "slide_ppto": 6,
+      "slide_cartera": 18,
+      "slide_mapa": 17,
+      "costo_inicial": 460800000,
+      "vs": "vs. costo inicial",
+      "tc": 3.84,
+      "componentes": ["C1", "C2", "C3"],
+      "razones": [
+        "Inicio tardío de la ejecución (junio 2026) por condicionamientos de otorgar la No Objeción y aprobación completa del POA 2026.",
+        "Paralización condicionada a la aprobación de la ampliación de plazo del contrato de préstamo.",
+        "Procesos de selección con precio altos y con quejas insalvables que conllevaron a declarar desierto proceso."
+      ],
+      "cuis": [
+        {"cui": "2669705", "alias": "Misionales", "comp": "C1"},
+        {"cui": "2517831", "alias": "Universidad Nacional de Trujillo", "comp": "C2", "nombre": "Mejoramiento del servicio académico y de investigación en las Escuelas de Ingeniería de Sistemas e ingeniería Mecatrónica de la Universidad Nacional de Trujillo del distrito de Trujillo - provincia de Trujillo - departamento de la Libertad", "mapa": ["Rectángulo 108", "Rectángulo 107"]},
+        {"cui": "2561950", "alias": "Universidad Nacional de Cajamarca", "comp": "C2", "nombre": "Mejoramiento del servicio de formación de pregrado en educación superior universitaria de la E.A.P de Biología y Biotecnología de la Facultad de Ciencias de la Salud de la Universidad Nacional de Cajamarca del distrito de Cajamarca - provincia de Cajamarca - departamento de Cajamarca", "mapa": ["Rectángulo 68", "Rectángulo 67"]},
+        {"cui": "2506626", "alias": "IESTP Huancavelica", "comp": "C2", "nombre": "Mejoramiento de los servicios de Educación superior tecnológica del IESTP Huancavelica, distrito de Ascensión - provincia de Huancavelica - departamento de Huancavelica", "mapa": ["Rectángulo 166", "Rectángulo 165"]},
+        {"cui": "2475486", "alias": "IEST Jorge Basadre Grohman", "comp": "C2", "nombre": "Mejoramiento de los Servicios de Educación Superior Tecnológica del IESTP Jorge Basadre Grohman, distrito de Tambopata - provincia de Tambopata - departamento de Madre de Dios", "mapa": ["Rectángulo 168", "Rectángulo 148"]},
+        {"cui": "2553078", "alias": "IESPP Nuestra Señora del Rosario", "comp": "C2", "nombre": "Mejoramiento y ampliación del servicio educativo en el Instituto de Educación Superior Pedagógico Público Nuestra Señora del Rosario distrito de Tambopata - provincia de Tambopata - departamento de Madre de Dios", "mapa": ["Rectángulo 92", "Rectángulo 91"]},
+        {"cui": "2475185", "alias": "ENSF José María Arguedas", "comp": "C2", "nombre": "Mejoramiento del servicio de educación superior de formación Artística de la ESFA José María Arguedas, distrito de Comas - provincia de Lima - departamento de Lima", "mapa": ["Rectángulo 161", "Rectángulo 160"]},
+        {"cui": "2432205", "alias": "CETPRO N.° 007 Andrés Araujo Moran", "comp": "C2", "nombre": "Mejoramiento del servicio educativo del CETPRO N° 007 Andrés Araujo Moran del distrito de Tumbes - provincia de Tumbes - departamento de Tumbes", "mapa": ["Rectángulo 56", "Rectángulo 8"]},
+        {"cui": "2538005", "alias": "IESPP Azángaro", "comp": "C2", "nombre": "Mejoramiento y ampliación del servicio de Educación Superior Pedagógica en I.S.P.P. de Azángaro, distrito de Azángaro - provincia de Azángaro - departamento de Puno", "mapa": ["Rectángulo 98", "Rectángulo 97"]},
+        {"cui": "2542652", "alias": "I.E.S.P.P Acomayo", "comp": "C2", "nombre": "Mejoramiento del servicio de educación superior pedagógica del I.E.S.P.P Acomayo, distrito de Acomayo - provincia de Acomayo - departamento de Cusco", "mapa": ["Rectángulo 175", "Rectángulo 174"]},
+        {"cui": "2566143", "alias": "Gestión del programa", "comp": "C3"}
+      ],
+      "cartera": ["2517831", "2561950", "2475486", "2506626", "2475185", "2432205", "2542652", "2553078", "2538005"]
+    }
+  ],
+  "fuentes": {"1": "RO y Bonos", "3F": "RO y Bonos", "3": "ROOC"},
+  "fuentes_consolidado": {"1": "RO Y BONOS", "3F": "RO Y BONOS", "3": "ROOC"},
+  "misionales": {"cui": "2669705", "slide": 16}
+}

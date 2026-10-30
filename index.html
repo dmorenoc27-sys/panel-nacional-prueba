@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es-PE" class="arranca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/ https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/ https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/ https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/ https://static.cloudflareinsights.com/beacon.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://ofi5.mef.gob.pe; connect-src 'self' https://cloudflareinsights.com https://api.acierta.pe; worker-src 'self' blob:; script-src-attr 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="diag.js?v=dca6c77"></script>
+<script src="arranque.js?v=6e53e62"></script>
+<!-- Cloudflare Web Analytics: medicion agregada, sin cookies ni identificacion de visitantes (no lleva SRI: Cloudflare actualiza el beacon sin aviso) --><script type='module' defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e1ee1cd8897548b98e84e8bfa004be09"}'></script>
+<title>Acierta: inversión pública del Perú al día, por entidad y CUI</title>
+<meta name="description" content="Ejecución presupuestal e inversiones de cada municipalidad, gobierno regional y ministerio del Perú, con datos abiertos del MEF: avance por CUI, alertas y reportes.">
+<link rel="canonical" href="https://acierta.pe/">
+<meta name="robots" content="noindex, nofollow" data-privado><!-- 29/10/2026: mientras acierta.pe siga tras Cloudflare Access (privado). Al abrir al público: quitar esta línea y enviar sitemap.xml en Search Console -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0E2B57">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Acierta"><meta property="og:locale" content="es_PE">
+<meta property="og:title" content="Acierta: inversión pública del Perú al día, por entidad y CUI">
+<meta property="og:description" content="Ejecución presupuestal e inversiones de cada municipalidad, gobierno regional y ministerio del Perú, con datos abiertos del MEF: avance por CUI, alertas y reportes.">
+<meta property="og:url" content="https://acierta.pe/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://acierta.pe/#org","name":"ARKA PROYECTOS DEL PERÚ","url":"https://www.arkaproyectos.com.pe","email":"consultas@arkaproyectos.com.pe"},{"@type":"WebSite","@id":"https://acierta.pe/#web","url":"https://acierta.pe/","name":"Acierta","inLanguage":"es-PE","publisher":{"@id":"https://acierta.pe/#org"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,500..700,0..100&display=swap" rel="stylesheet">
+<style>
+/* Componentes de detalle (fichas de UE y de inversión, módulos, diálogos). El sistema de diseño —tokens, barra lateral, rejilla de una
+   pantalla, tablas, páginas, móvil— vive en acierta.css, que se carga después y manda. */
+.uep-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;height:100%;box-sizing:border-box;padding:14px 16px}
+.pnl{padding:0;border-left:4px solid var(--p);transition:box-shadow .15s;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:#fff;cursor:pointer}.pnl:hover{box-shadow:0 6px 20px rgba(15,42,67,.14)}
+.pnl.on{grid-column:1/-1;grid-row:1/-1;overflow:auto;box-shadow:0 6px 22px rgba(15,42,67,.18)}.pnl.off{display:none}
+.pnl-top{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;flex:none}.pnl-ic{font-size:24px;line-height:1.1;flex:none}
+.pnl-tx{flex:1;min-width:0}.pnl-h{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+.pnl-v{font-size:18px;font-weight:800;line-height:1.3;color:var(--ink)}.pnl-s{font-size:12px;color:var(--mut);margin-top:4px;line-height:1.4}
+.pnl-g{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;flex:none}.pnl-g b{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:12px}
+.pnl-arrow{flex:none;font-size:13px;color:var(--mut2);align-self:center}
+.pnl-info{padding:0 18px 14px;flex:none}
+.pnl-det{border-top:1px solid var(--line);padding:10px 18px 16px;flex:1;min-height:0;overflow:auto}
+.pnl-det .r{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:12.5px}.pnl-det .r:last-child{border-bottom:0}.pnl-det .r span{color:var(--mut)}.pnl-det .r b{color:var(--ink);font-weight:700}
+#ficha{padding:0}.fxh{padding:14px 18px 10px;border-bottom:1px solid var(--grid);flex:0 0 auto}.fxb{padding:12px 18px 16px;overflow:auto;flex:1;min-height:0}.fx h3{margin:0 0 4px;font-size:16px;font-weight:800;color:var(--p2);line-height:1.3}
+.fx pre{white-space:pre-wrap;font:12px/1.5 var(--f);background:var(--sup2);border-radius:8px;padding:8px 10px;margin:4px 0 10px}.fx .mm{display:flex;gap:3px;align-items:flex-end;height:50px;margin:4px 0 10px}.fx .mm i{flex:1;background:var(--ok);border-radius:3px 3px 0 0;min-height:2px}.fx .x{float:right;cursor:pointer;font-size:22px;line-height:1;color:var(--mut);border:0;background:none}
+dialog.fx{border:1px solid var(--line);border-radius:16px;background:var(--sup);color:var(--ink);padding:0;max-width:min(1640px,96vw);width:96vw;max-height:94vh;box-shadow:0 30px 80px rgba(0,0,0,.35)}dialog.fx::backdrop{background:rgba(20,27,38,.45);backdrop-filter:blur(3px)}dialog.fx .fxb{max-height:84vh}
+.pd-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:1px solid var(--grid);flex:0 0 auto}.pd-kpi{padding:10px 10px 8px;text-align:center;border-right:1px solid var(--grid);position:relative}.pd-kpi:last-child{border-right:0}.pd-kpi i{position:absolute;top:0;left:0;right:0;height:3px;background:var(--p)}.pd-kpi .l{font-size:8.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}.pd-kpi .v{font-size:19px;font-weight:900;line-height:1;letter-spacing:-.3px;color:var(--ink)}.pd-kpi .s{font-size:9px;color:var(--mut);margin-top:3px}
+.pd-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));flex:1;min-height:0;overflow:auto}.pd-col{padding:12px 16px;border-right:1px solid var(--grid);border-bottom:1px solid var(--grid);min-width:0}.pd-lbl{font-size:8.5px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin:0 0 8px;padding-bottom:5px;border-bottom:1px solid var(--grid);display:flex;justify-content:space-between}.pd-lbl small{font-weight:600;letter-spacing:0;text-transform:none}
+.pd-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:5px;font-size:11px}.pd-row b{color:var(--mut);font-weight:600;min-width:96px;flex-shrink:0;font-size:10px;padding-top:1px}.pd-row span{color:var(--ink);font-weight:600;flex:1;min-width:0;overflow-wrap:anywhere}
+.pd-txt{font-size:11.5px;line-height:1.5;color:var(--ink);background:var(--sup2);border-left:3px solid var(--ok);border-radius:0 8px 8px 0;padding:8px 10px;white-space:pre-wrap;margin-bottom:10px}.pd-txt.bad{border-left-color:var(--bad)}.pd-txt .f{font-size:10px;color:var(--mut);font-weight:700;display:block;margin-bottom:2px}
+.pd-tbl{width:100%;border-collapse:collapse;font-size:10.5px}.pd-tbl th{background:var(--sup2);padding:4px 6px;text-align:right;font-weight:700;color:var(--ink2);border-bottom:2px solid var(--grid);font-size:8.5px;text-transform:uppercase;letter-spacing:.3px;position:static}.pd-tbl th:first-child,.pd-tbl td:first-child{text-align:left}.pd-tbl td{padding:4px 6px;text-align:right;border-bottom:1px solid var(--grid);color:var(--ink2);white-space:nowrap}.pd-tbl td:first-child{font-weight:600;color:var(--ink)}.pd-tbl tr.c td{background:#EDF3FC;font-weight:800;color:var(--p2)}.pd-tbl tr.y td{background:#F0FAF0}
+.pd-mm{display:flex;gap:3px;align-items:flex-end;height:56px;margin:4px 0 2px}.pd-mm i{flex:1;background:var(--p);border-radius:2px 2px 0 0;min-height:2px;position:relative}.pd-mm i:hover{background:var(--p2)}.pd-mml{display:flex;gap:3px;font-size:8px;color:var(--mut)}.pd-mml span{flex:1;text-align:center}
+dialog.fx .pd-body{max-height:calc(94vh - 300px);grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.pd-costbox{background:var(--sup);border-radius:10px;padding:10px 14px}.pd-costbox .l{font-size:8.5px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.8px}.pd-costbox .l small{font-weight:600;letter-spacing:0;text-transform:none}.pd-costbox .v{font-size:19px;font-weight:800;color:var(--ink);margin:2px 0 6px}.pd-costbox .s{font-size:10.5px;color:var(--ink2)}
+.bar-track{height:7px;border-radius:5px;background:var(--grid);overflow:hidden}.bar-track i{display:block;height:100%;border-radius:5px}
+.mrow{display:flex;gap:10px;flex-wrap:wrap}.mbox{background:var(--sup);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}.mrow:not(.r2)>.mbox{min-width:170px}.mrow.r2>.mbox{min-width:230px}.mbox.acc{border-left:3px solid var(--p)}.mbox.low{opacity:.7}
+.mbox h4{margin:0 0 2px;font-size:9px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:5px}.mbox h4 i{font-style:normal;font-size:13px}
+.ic{width:14px;height:14px;stroke:var(--ink2);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto;vertical-align:-2px}
+.mbox .row{display:flex;justify-content:space-between;gap:6px;font-size:10.5px;color:var(--ink2)}.mbox .row b{color:var(--ink);font-weight:700}
+.mbox .tot{display:flex;justify-content:space-between;gap:6px;font-size:12px;font-weight:800;color:var(--p2);border-top:1px solid var(--grid);padding-top:5px;margin-top:2px}
+.mchip{font-size:10px;font-weight:800;text-align:center;padding:6px 8px;border-radius:8px;background:var(--badbg);color:#BE2A2A}.mchip.ok{background:var(--okbg);color:#147241}
+.mstat{background:#fff;border-radius:8px;padding:5px 8px}.mstat .l{font-size:8px;font-weight:800;color:var(--mut);text-transform:uppercase}.mstat .v{font-size:13px;font-weight:800}
+.mph{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--mut);font-size:10.5px;background:repeating-linear-gradient(45deg,var(--sup2),var(--sup2) 8px,var(--sup) 8px,var(--sup) 16px);border-radius:8px;min-height:70px;padding:8px}
+details.pd-col{cursor:default}details.pd-col>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:8.5px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;padding-bottom:5px;border-bottom:1px solid var(--grid);margin:0 0 8px}details.pd-col>summary::-webkit-details-marker{display:none}details.pd-col>summary::after{content:'▸';font-size:11px;flex:none;transition:transform .15s;color:var(--ink2)}details.pd-col[open]>summary::after{transform:rotate(90deg)}details.pd-col>summary small{font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink2)}
+.print-only{display:none}
+.sea{padding:8px 0 10px;border-top:1px dashed var(--grid)}.sea.first{border-top:0;padding-top:2px}.sea-h{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}
+.sea-tl{display:flex;margin:8px 0 6px;position:relative}.sea-tl:before{content:"";position:absolute;left:8px;right:8px;top:6px;height:2px;background:var(--grid)}.sea-tl>div{flex:1;min-width:0;position:relative;text-align:center;font-size:10px;color:var(--ink2)}.sea-tl i{display:block;width:12px;height:12px;border-radius:50%;background:var(--p);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--p);margin:0 auto 3px;position:relative}.sea-tl>div.on i{background:var(--gold);box-shadow:0 0 0 1.5px var(--gold)}.sea-tl b{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}.sea-tl span{font-weight:700;color:var(--ink)}
+.sea-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px 10px;font-size:11.5px}.sea-g small{display:block;font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}.sea-g b{display:block;color:var(--ink)}.sea-g span{display:block;font-size:10.5px}
+.pd-txt .nrm{display:block;font-size:10px;color:var(--mut);font-weight:400;margin-top:3px}.sea-rel{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}.sea-rel span{font-size:10.5px;background:var(--sup2);border-radius:999px;padding:3px 9px;color:var(--ink2)}.sea-rel span b{color:var(--ink)}.sea-rel span.w{background:var(--warnbg);color:#7a4a00}.sea-rel span.b{background:#FDECEA;color:var(--bad)}
+.ipinv{margin:0 0 10px;border-radius:12px;padding:10px 14px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--p)}.ipinv.ok{border-left-color:var(--ok);background:linear-gradient(135deg,#fff 55%,#EAF6EC)}.ipinv.warn{border-left-color:var(--warn);background:linear-gradient(135deg,#fff 55%,#FFF4E0)}.ipinv.bad{border-left-color:var(--bad);background:linear-gradient(135deg,#fff 55%,#FDECEC)}.ipinv-h b{font-size:12px;color:var(--p2);text-transform:uppercase;letter-spacing:.04em}.ipinv-h small{margin-left:8px;color:var(--mut);font-size:10.5px}.ipinv-b{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:4px 0}.ipinv-v{font-size:26px;font-weight:800;color:var(--ink)}.ipinv-v small{display:block;font-size:11px;font-weight:600;color:var(--ink2)}.ipinv-p{font-size:12px;color:var(--ink);line-height:1.4}.ipinv-p span{color:var(--ink2)}.ipinv-n{font-size:10.5px;color:var(--mut);line-height:1.35}
+.dire{margin:8px 0 10px;border-radius:12px;padding:10px 14px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--p)}.dire-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px 16px;margin-top:6px}.dire-g>div{font-size:12px;line-height:1.35}.dire-g small{display:block;color:var(--ink2);font-size:10.5px}.dire-g .pd-badge{background:var(--p);color:#fff;font-size:9px;padding:1px 6px}
+.pi-tipo{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--p-t1);color:var(--p-lo);font-size:11px;font-weight:800;cursor:help}
+.pd-txt.warn{background:var(--warnbg);color:#7a4a00}.pd-txt.p{background:#DCE7F5;color:var(--p2)}
+.ing-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;padding:8px 6px}.ing-top>div{background:var(--sup2);border-radius:10px;padding:8px 10px;border:1px solid var(--grid)}.ing-top small{display:block;font-size:9.5px;color:var(--mut);font-weight:700;letter-spacing:.05em}.ing-top b{display:block;font-size:17px;font-weight:800}.ing-top span{display:block;font-size:10.5px;color:var(--ink2);white-space:normal}.mini{display:flex;align-items:flex-end;gap:2px;height:26px;margin-top:5px}.mini i{flex:1;border-radius:2px 2px 0 0;min-height:1px}
+.hero a.chip[data-f]{cursor:pointer}.hero a.chip.on{outline:2px solid #fff;outline-offset:1px}
+</style>
+<link rel="stylesheet" href="acierta.css?v=49a1c19">
+<link rel="stylesheet" href="acierta-2.css?v=5b272fe">
+</head>
+<body>
+<aside class="side" id="side">
+ <a class="brand" href="#/" title="Acierta · Inicio"><span class="mono" id="iso"></span><span><b id="marca">ACIERTA</b><small>Seguimiento de la inversión pública</small></span></a>
+ <div class="qbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="q" placeholder="Entidad, función o CUI" aria-label="Buscar municipalidad, pliego, función o CUI" autocomplete="off"><ul class="sug" id="sug"></ul></div>
+ <nav class="secs" id="secs" aria-label="Secciones">
+  <a href="#/" data-s="inicio" data-i="home"><span>Inicio</span></a>
+  <a href="#/entidad" data-s="entidad" data-i="lock" title="Datos internos del SIAF, con clave"><span>Mi entidad</span></a>
+  <a href="#/cartera" data-s="cartera" data-i="star"><span>Mi cartera</span></a>
+  <a href="#/legal" data-s="legal" data-i="shield"><span>Aviso legal y privacidad</span></a>
+ </nav>
+ <div class="side-f"><button type="button" class="corte-btn" id="corte-btn" aria-haspopup="dialog" aria-expanded="false" title="Elegir la fecha de la información"><span id="corte-ico"></span><span><small>Información al</small><b id="corte">…</b></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button><select id="anio" aria-label="Año de ejecución" hidden></select></div>
+ <button type="button" class="side-tg" id="side-tg" aria-expanded="true" aria-controls="side" title="Ocultar el menú (más espacio para el mapa)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg><span>Ocultar menú</span></button>
+</aside>
+<header class="top"><button type="button" class="ov-volver" id="atras" title="Volver a la vista anterior"><span class="ov-fl" aria-hidden="true">←</span><span>Volver</span></button><div class="crumbs" id="crumbs"></div><div class="sw ctr" id="niv" role="group" aria-label="Nivel de gobierno"><button class="on" data-n=""><span class="l">Todos los niveles</span><span class="s">Todos</span></button><button data-n="E"><span class="l">Gobierno Nacional</span><span class="s">Nacional</span></button><button data-n="R"><span class="l">Gobierno Regional</span><span class="s">Regional</span></button><button data-n="M"><span class="l">Gobierno Local</span><span class="s">Local</span></button></div><div class="sw" id="sw" role="group" aria-label="Alcance del gasto"><button class="on" data-m="inv">Inversiones</button><button data-m="tot">Todo el gasto</button></div><button class="star" id="star" title="Guardar en Mi cartera" aria-label="Guardar en Mi cartera"><span class="ib"></span><span> Guardar</span></button><button class="btn" id="share" title="Copiar enlace a esta vista" aria-label="Copiar enlace a esta vista"><span class="ib" data-ico="link"></span><span> Enlace</span></button><button class="btn p" id="ppt" title="Expediente en PowerPoint editable · con el servicio contratado" aria-label="Expediente PPT: PowerPoint editable, con el servicio contratado" hidden><span class="ib" data-ico="download"></span><span> Expediente PPT</span></button><button class="btn" id="print" title="Imprimir o guardar en PDF esta vista" aria-label="Imprimir o guardar en PDF esta vista"><span class="ib" data-ico="printer"></span><span> Imprimir</span></button></header>
+
+<main>
+<div class="board" id="board">
+  <section class="hero" id="hero" aria-label="Avance y decisiones pendientes"></section>
+  <div class="card" id="rowmapa"><h2><span id="tit-mapa">Avance por departamento</span><small>devengado / PIM</small></h2><div class="cb"><svg id="mapa" viewBox="0 0 400 520" role="img" aria-label="Mapa del Perú"></svg>
+   <div class="leg">menor <i style="background:var(--q1)"></i><i style="background:var(--q2)"></i><i style="background:var(--q3)"></i><i style="background:var(--q4)"></i><i style="background:var(--q5)"></i><i style="background:var(--q6)"></i> mayor avance</div></div></div>
+  <div class="card" id="tcard"><div class="ptabs" id="ptabs"><button class="on" data-p="rank">Detalle</button><button data-p="dist">¿De dónde sale y a qué va?</button><button class="btn" id="exp" title="Ampliar la tabla con todas las columnas">Ampliar</button></div>
+   <div id="pRank" style="display:contents"><div id="cadena"></div><div class="tabs" id="tabs"></div><div class="filt" id="filt"></div><div class="wrap" tabindex="0"><table id="tabla"></table></div></div>
+   <div id="pDist" hidden style="display:contents"><div class="tabs" id="tabs2"></div><div class="wrap" tabindex="0"><table id="tabla2"></table></div></div></div>
+  <aside class="kpis" id="kpis" aria-label="Cadena del gasto"><div class="kpis-h"><span>Cadena del gasto · S/ millones</span><button type="button" class="kpis-tg" id="kpis-tg" aria-expanded="true" aria-controls="tiles" title="Ocultar la cadena del gasto (más espacio para el mapa)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></div><div class="tiles" id="tiles"></div></aside>
+  <div id="rowchart">
+   <div class="card"><h2><span id="tit-serie">Devengado mensual</span><small>S/ millones</small></h2><div class="cb"><svg id="serie" viewBox="0 0 520 190" role="img" aria-label="Devengado mensual"></svg><div class="leg" id="leg-serie"></div></div></div>
+   <div class="card"><h2><span id="tit-hist">Evolución anual</span><small>S/ millones</small></h2><div class="cb"><svg id="hist" viewBox="0 0 520 190" role="img" aria-label="Evolución anual"></svg><div class="leg"><i style="background:var(--line)"></i> PIM <i style="background:var(--p);margin-left:8px"></i> Devengado</div></div></div>
+  </div>
+  <div class="page lens" id="lens" hidden></div>
+  <div class="page card fx" id="ficha" hidden></div>
+  <div class="page" id="vig" hidden><div class="vf" id="vf"></div><div id="alertas"></div></div>
+  <div class="page" id="cmp" hidden></div>
+  <div class="page" id="cart" hidden></div>
+  <div class="page" id="ent" hidden></div>
+  <div class="page" id="uep" hidden></div>
+  <div class="page" id="modp" hidden></div>
+  <div class="page" id="porta" hidden></div>
+</div>
+</main>
+<div class="tip" id="tip"></div><dialog class="fx" id="fx"></dialog><div class="toast" id="toast"></div>
+<footer><span class="pie-izq"><b id="corte-pie" style="color:var(--ink)"></b> Acierta es una herramienta de apoyo de <a href="https://www.arkaproyectos.com.pe" rel="noopener">ARKA PROYECTOS</a>, no oficial, hecha con los datos abiertos del MEF (Consulta Amigable y Banco de Inversiones) y actualizada cada mañana. Las cifras oficiales son siempre las del MEF. Montos en soles · avance = devengado / PIM · semáforo: verde desde 70 %, ámbar de 40 a 70 %, rojo bajo 40 %.</span><span class="pie-der"><a href="#/conoce" id="pie-conoce">¿Tu entidad quiere Acierta? Conoce Acierta</a><a href="#/legal">Aviso legal y privacidad</a></span></footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha384-vtjasyidUo0kW94K5MXDXntzOJpQgBKXmE7e2Ga4LG0skTTLeBi97eFAXsqewJjw" crossorigin="anonymous"></script>
+<script defer src="iconos.js?v=92f23d5"></script>
+<script defer src="calendario.js?v=8f73ed8"></script>
+<script defer src="expediente.js?v=15dca4b"></script>
+<script defer src="incentivos.js?v=cb6b7f4"></script>
+<script defer src="fed.js?v=6e049bd"></script>
+<script defer src="entidad.js?v=c6fb730"></script>
+<script defer src="reportes_siaf.js?v=689974c"></script>
+<script defer src="cierre.js?v=a9c7985"></script>
+<script defer src="proveedores.js?v=c0809c8"></script>
+<script defer src="contrataciones.js?v=2692b0f"></script>
+<script defer src="gestion.js?v=a05f41c"></script>
+<script defer src="reporte_ue.js?v=8790369"></script>
+<script defer src="flujo.js?v=6dacbc6"></script>
+<script defer src="acierta.js?v=f52b5fd"></script>
+<script defer src="conoce.js?v=4752c8d"></script>
+<script defer src="graficos.js?v=96288ba"></script>
+<script defer src="motion.js?v=8d5b2ef"></script>
+<script src="app.js?v=f9e9567" defer></script>
+</body>
+</html>

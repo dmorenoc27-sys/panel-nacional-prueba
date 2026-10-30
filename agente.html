@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.acierta.pe; frame-ancestors 'none'">
+<title>Acierta · Agente de la entidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,500&display=swap">
+<style>
+:root{--navy:#0F2A43;--ink:#F5F2EA;--mut:#8FB4E0;--gold:#D4B25E;--gold2:#E9CF7A;--ok:#2ECC8A;--line:rgba(255,255,255,.12);--glass:rgba(255,255,255,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}body{overflow:hidden;background:#0F2A43;color:var(--ink);font-family:Jost,Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.stage{position:relative;min-height:100%;height:100%;background:radial-gradient(ellipse at 18% 40%,#1B4471 0%,#0F2A43 45%,#08182A 100%);isolation:isolate;display:grid;grid-template-rows:auto minmax(0,1fr);padding:22px 40px}
+.grid{position:absolute;inset:0;z-index:-1;background-image:radial-gradient(circle,rgba(143,180,224,.14) 0 1px,transparent 1.6px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 30% 50%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 30% 50%,#000 10%,transparent 70%);animation:drift 40s linear infinite}
+@keyframes drift{to{background-position:32px 32px}}
+.orb{position:absolute;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.3;pointer-events:none}.o1{width:460px;height:460px;left:-140px;top:-160px;background:#2E6DB4;animation:float 14s ease-in-out infinite}.o2{width:380px;height:380px;right:-120px;bottom:-180px;background:#C9A227;opacity:.16;animation:float 18s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translate(30px,20px)}}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}.brand svg{width:58px;height:58px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.45))}
+.brand b{display:block;font-size:24px;letter-spacing:.26em;font-weight:800;line-height:1}.brand small{display:block;margin-top:4px;font-size:9.5px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase;font-weight:700}
+header a.vol{color:var(--mut);text-decoration:none;font-size:13px;border:1px solid var(--line);padding:9px 16px;border-radius:999px}
+main{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:stretch;min-height:0;margin-top:18px}
+.card{border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.025));backdrop-filter:blur(10px);border-radius:22px;padding:28px 32px;box-shadow:0 30px 60px rgba(0,0,0,.35);display:flex;flex-direction:column;min-height:0;overflow:auto;animation:in .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font:italic 500 38px Fraunces,Georgia,serif;line-height:1.1;margin-top:8px}h1 i{color:var(--gold2)}
+.lead{margin-top:12px;color:#B8C7D9;font-size:15px;line-height:1.55;max-width:560px}
+.dl{margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;border:0;cursor:pointer;font-weight:700;font-size:15px;letter-spacing:.04em;font-family:inherit;text-decoration:none;background:linear-gradient(135deg,#E9CF7A,#C9A552 60%,#B08D3A);color:#1B1A14;box-shadow:0 12px 30px rgba(201,165,82,.35);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(201,165,82,.45)}.btn[aria-disabled=true]{opacity:.45;pointer-events:none}
+.meta{font-size:13px;color:var(--mut);line-height:1.5}.meta b{color:#fff;font-weight:600}
+.hash{margin-top:14px;font:12px Consolas,monospace;color:#CFE0F2;background:rgba(8,24,42,.6);border:1px solid var(--line);border-radius:12px;padding:10px 14px;word-break:break-all}
+.hash small{display:block;font:700 10px Jost,sans-serif;letter-spacing:.14em;color:var(--mut);margin-bottom:4px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:20px}.feat div{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#DDE7F0;line-height:1.4}
+.feat span{width:26px;height:26px;border-radius:50%;background:rgba(46,204,138,.15);border:1px solid rgba(46,204,138,.4);color:#BDF3DA;display:grid;place-items:center;font-size:13px;flex:none}
+h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);font-weight:700}
+ol{list-style:none;counter-reset:p;margin-top:14px;display:flex;flex-direction:column;gap:12px}
+ol li{counter-increment:p;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;font-size:14px;line-height:1.5;color:#DDE7F0}
+ol li::before{content:counter(p);width:34px;height:34px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-weight:700;font-size:13px}
+ol b{color:#fff}code{font:12.5px Consolas,monospace;background:rgba(8,24,42,.6);padding:2px 6px;border-radius:6px;color:#CFE0F2}
+.aviso{margin-top:auto;padding-top:16px;font-size:11.5px;color:#7F97B0;line-height:1.5}
+footer{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;font-size:11.5px;color:#6F8AA6;padding-top:12px}footer a{color:var(--mut);text-decoration:none}
+@media(max-width:900px){body{overflow:auto}.stage{height:auto;padding:18px}main{grid-template-columns:1fr}.card{overflow:visible}h1{font-size:30px}}
+</style>
+</head>
+<body><div class="stage"><div class="grid"></div><div class="orb o1"></div><div class="orb o2"></div>
+<header><a class="brand" href="/" id="brand"><span id="iso"></span><span><b>ACIERTA</b><small>Seguimiento de la inversión pública, entidad por entidad</small></span></a><a class="vol" href="/#/entidad">← Mi entidad</a></header>
+<main>
+ <section class="card">
+  <div class="eyebrow">Acierta by ARKA · Agente de la entidad</div>
+  <h1>Su SIAF, cifrado en <i>su propio equipo</i>.</h1>
+  <p class="lead">El Agente lee el SIAF-SP de la entidad en modo solo lectura, lo cifra con una clave que solo ustedes conocen y sube únicamente el archivo cifrado. Nada en claro sale de su equipo; Acierta no conoce la clave ni puede recuperarla.</p>
+  <div class="dl"><a class="btn" id="dl" href="https://api.acierta.pe/v1/agente/AciertaAgente.exe" aria-disabled="true">⬇ Descargar AciertaAgente.exe</a><div class="meta" id="meta">Consultando la versión publicada…</div></div>
+  <div class="hash"><small>HUELLA SHA-256 DEL INSTALADOR · verifíquela con <code>Get-FileHash .\AciertaAgente.exe</code> en PowerShell</small><span id="sha">—</span></div>
+  <div class="feat">
+   <div><span>✓</span>Cifrado AES-256-GCM con clave derivada (PBKDF2, 600 000 iteraciones)</div>
+   <div><span>✓</span>Token por entidad, con vencimiento y revocable al fin del contrato</div>
+   <div><span>✓</span>Huellas SHA-256 de cada tabla de origen y del paquete</div>
+   <div><span>✓</span>Sin cálculos ni datos de otras entidades: solo lee, cifra y sube</div>
+  </div>
+  <p class="aviso">Windows 10/11. Requiere acceso de lectura a la carpeta Data del SIAF-SP y conexión https hacia api.acierta.pe. Licencia de uso limitada a la entidad titular del token (D.L. N.º 822). Herramienta de análisis referencial: no es una herramienta de decisión; no reemplaza los sistemas oficiales (SIAF, Banco de Inversiones) ni constituye opinión de control ni sustituye la información oficial.</p>
+ </section>
+ <section class="card">
+  <h2>Instalación en 5 pasos · 5 minutos</h2>
+  <ol>
+   <li><div><b>Descargue y verifique.</b> Compare la huella SHA-256 del archivo con la publicada en esta página antes de abrirlo. Si Windows muestra "Windows protegió su PC", elija <i>Más información → Ejecutar de todas formas (solo si la huella SHA-256 del archivo coincide con la publicada por ARKA y de acuerdo con la política de TI de su entidad)</i>.</div></li>
+   <li><div><b>Conexión.</b> Pegue el token que Acierta envió al correo institucional al activar el servicio y pulse <i>Verificar</i>.</div></li>
+   <li><div><b>Origen SIAF.</b> El cliente SIAF-SP se instala normalmente en <code>C:\SIAF_VFP\Data si su entidad aún usa el cliente SIAF-SP; si ya opera en SIAF-RP, use el respaldo que le entregue su área de informática</code>; el Agente la detecta. Si trabaja con un respaldo descomprimido, elija su carpeta <code>Data</code>.</div></li>
+   <li><div><b>Clave de la entidad.</b> Mínimo 12 caracteres; una frase de cuatro palabras es ideal. Es la misma con la que el alcalde y los gerentes entran a <i>Mi entidad</i>. Guárdela en un lugar seguro: nadie más la conoce.</div></li>
+   <li><div><b>Cifrar y subir.</b> En uno o dos minutos verá el corte, la huella del paquete y el enlace a acierta.pe. Repita el proceso cada vez que quiera actualizar la información; para cambiar la clave, basta volver a correrlo con una nueva.</div></li>
+  </ol>
+  <p class="aviso">¿Olvidaron la clave? Corran el Agente con una clave nueva: la anterior deja de servir al instante. Soporte: consultas@arkaproyectos.com.pe · Bitácora local: %APPDATA%\Acierta\agente.log (sin datos del SIAF).</p>
+ </section>
+ <footer><span>© ARKA PROYECTOS · Acierta</span><span><a href="/terminos.html">Términos</a> · <a href="/#/legal">Aviso legal</a> · <a href="/privacidad.html">Política de privacidad</a></span></footer>
+</main>
+</div>
+<script src="acierta.js"></script>
+<script>
+if(window.ACIERTA){document.getElementById('iso').innerHTML=ACIERTA.isoSVG({size:58})}
+fetch('https://api.acierta.pe/v1/agente').then(r=>r.ok?r.json():Promise.reject()).then(a=>{document.getElementById('meta').innerHTML=`Versión <b>${a.version}</b> · ${(a.bytes/1048576).toFixed(1)} MB · publicado ${a.publicado}`;document.getElementById('sha').textContent=a.sha256;document.getElementById('dl').removeAttribute('aria-disabled')}).catch(()=>{document.getElementById('meta').textContent='El instalador se publicará en breve. Escríbanos a consultas@arkaproyectos.com.pe.'});
+</script>
+</body>
+</html>
